@@ -1,0 +1,76 @@
+\firstsection{Introduction}
+\maketitle
+\label{sec:intro}
+\begin{itemize}[topsep=0cm, itemsep=0ex, parsep=0cm]
+    \item Computational models are used to study real-world phenomena, either by conducting computer simulations or a set of well-designed experiments. Give examples.
+    
+    \item Analysis of the results can then be used to improve the models, find optimal solutions, uncover unknown relationships and support decision-making.
+        
+    \item One important aim is to understand the shape of the output function. What are the local min and max values, where are they located and how are they associated with each other. Where are the min and max, how stable the function is at various location.
+    
+    \item Another important aspect is understanding the behaviour of the function, that is the relationship between the input parameters and the output.
+    
+    \item In particular, identifying regions of interest where the output function has unique characteristics or behavior with respect to the input parameters. Understanding the characteristics of the function in these ROI and around certain critical points.
+    
+    \item These analysis can be done on the output function or on derived quantities.
+    
+    \item The data consist of a large collection of sample points in high-dimensional space. Dense uniform sampling can be very expensive. One approach to reduce the cost is to start with a coarse sampling density and then add samples in regions of interest. The challenge is then where to add such samples.\todo[inline]{If we talk about our sampling technique we probably need to show that it actually helps. That might be too much for this paper.}
+    
+    \item Topology
+    
+    Define $f: R^d \rightarrow R$, where y = $f(\overline{x})$. 
+    
+    \begin{itemize}
+        \item Morse-Smale and hierarchical simplification to deal with noise.
+        
+         \item Geometric Skeleton: inverse relationships indicating which combinations of inputs are responsible for which output.
+     
+        \item Topology data analysis (or is it Morse-Smale approaches?) tools often focus on on extrapolating $f$ at various refinement levels.
+    \end{itemize}
+
+    \item Simulation Ensembles
+    \begin{itemize}
+        \item Selection of ROI
+        \item selection of additional sampling points
+    \end{itemize}
+        
+\end{itemize}
+
+\item What we have focused on and have done
+In this paper we focus on scalar functions. We use MSC theory to define local approximation of the function rather than a complete global one. 
+
+\begin{itemize}
+    \item Help an analyst identify regions of interest (partitions) in the input space, where the $f$ exhibit consistent behaviour. 
+    
+    \item Note that in general these that ROI need not be hyper cubes.
+
+    \item While the function maybe defined on a manifold embedded in $\R^d$, we do not aim to identify the manifold. 
+    
+    \item from Gerber:
+    \textit{"We are not aiming to interpolate or extrapolate f , but to analyze and visualize its structure using the existing samples to provide insight into the relationship between the input parameters and the output"}. 
+
+    \item Explore the space of all potential simplifications to help the user select the appropriate refinement. Previous approaches rely on the user to select an appropriate refinement level based on crude measures, i.e. the focus is on \textit{What} to do given a persistence level. In contrast, we focus on the \textit{Why} question, i.e., why should the user select a particular refinement level, and should there be only global refinement level. 
+    
+    \item we propose that other measures, in addition to persistence, can and should be used. These measure can describe attributes of a partition as well as relationships between partitions. Measures can depends on the data in the current partition,  multiple partitions or even on an (potentially temporal) ancestry relation.
+
+    \item Smart selection of additional sampling 
+    
+    \item An open exploration environment to facilitate the analysis exploration. It is designed to be used in a Notebook within a JupyterLab environment and as such our approach is designed for users that are knowledgeable with Python although it is simple to construct preconfigure setups for non programmers at a price of a closed system. The environment is open in the sense that it is meant to be integrated into a user's analysis workflow. Users can drive the UI from Python or by other components and can connect the UI to drive other tools, such as running additional simulations.s
+
+\end{itemize}
+
+\item Contributions
+\begin{itemize}
+    \item Regulus Tree: A new interpretation of a persistence refinement of a Morse-Smale complex as a set of nested partitions. \textbf{This need to be rephrased.}
+
+    \item A visualization approach that provides a global view over all potential simplifications  
+
+    \item Analysis of the nested partitions with respect to measures that are not necessarily geometric. 
+
+    \item Non-uniform and non-consistent simplifications
+    
+    \item Sampling: use geometric skeletons to select additional sampling points.
+    
+    \item An open exploration environment to facilitate the analysis exploration. 
+\end{itemize}
+
