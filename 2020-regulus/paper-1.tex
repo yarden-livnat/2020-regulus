@@ -13,9 +13,6 @@
 %% review process. Some conferences, like IEEE Vis and InfoVis, have NOT
 %% in the past.
 
-%% Please use the ``preprint''  option when producing a preprint version
-%% for sharing your article on an open access repository
-
 %% Please note that the use of figures other than the optional teaser is not permitted on the first page
 %% of the journal version.  Figures should begin on the second page and be
 %% in CMYK or Grey scale format, otherwise, colour shifting may occur
@@ -43,7 +40,7 @@
 \fi%
 
 %% it is recomended to use ``\autoref{sec:bla}'' instead of ``Fig.~\ref{sec:bla}''
-\graphicspath{{figures/}{pictures/}{images/}{./}} % where to search for the images
+\graphicspath{{figs/}{images/}{./}} % where to search for the images
 
 \usepackage{microtype}                 % use micro-typography (slightly more compact, better to read)
 \PassOptionsToPackage{warn}{textcomp}  % to address font issues with \textrightarrow
@@ -54,25 +51,28 @@
 \usepackage{cite}                      % needed to automatically sort the references
 \usepackage{tabu}                      % only used for the table example
 \usepackage{booktabs}                  % only used for the table example
-%% We encourage the use of mathptmx for consistent usage of times font
-%% throughout the proceedings. However, if you encounter conflicts
-%% with other math-related packages, you may want to disable it.
 
+\usepackage{scrextend}
+\usepackage{calc}
+\usepackage{enumitem}
 
-%% Regulus specific
 \usepackage{todonotes}
-% Select what to do with command \comment:
+% Select what to do with command \comment:  
 % \newcommand{\comment}[1]{}  %comment not showed
 \newcommand{\comment}[2]
 {\par {\bfseries \color{blue} [#2]: #1 \par}} %comment showed
+%% usage:
+%% \comment{} - a simple comment
+%% \todo[inline]{an inline todo note}
+%% \todo{A todo note at the margin}
 
 \usepackage{algorithm}
 \usepackage[noend]{algpseudocode}
 
+\newtheorem{definition}{Definition}
 \newcommand{\regulus}{\emph{Regulus}~}
 \usepackage{listings}
 \usepackage{xcolor}
-
 
 %New colors defined below
 \definecolor{codegreen}{rgb}{0,0.6,0}
@@ -82,34 +82,35 @@
 
 %Code listing style named "mystyle"
 \lstdefinestyle{mystyle}{
-% backgroundcolor=\color{backcolour},
+% backgroundcolor=\color{backcolour},   
   commentstyle=\color{codegreen},
   keywordstyle=\color{magenta},
   numberstyle=\tiny\color{codegray},
   stringstyle=\color{codepurple},
   basicstyle=\ttfamily\footnotesize,
-  breakatwhitespace=false,
-  breaklines=true,
-  captionpos=b,
+  breakatwhitespace=false,         
+  breaklines=true,                 
+  captionpos=b,  
   frame=single,
-  keepspaces=true,
-%   numbers=left,
-  numbersep=5pt,
-  showspaces=false,
+  keepspaces=true,                 
+%   numbers=left,                    
+  numbersep=5pt,                  
+  showspaces=false,                
   showstringspaces=false,
-  showtabs=false,
+  showtabs=false,                  
   tabsize=2
 }
+
 %"mystyle" code listing set
 \lstset{style=mystyle}
 
-%% In preprint mode you may define your own headline. If not, the default IEEE copyright message will appear in preprint mode.
-%\preprinttext{To appear in IEEE Transactions on Visualization and Computer Graphics.}
 
-%% In preprint mode, this adds a link to the version of the paper on IEEEXplore
-%% Uncomment this line when you produce a preprint version of the article
-%% after the article receives a DOI for the paper from IEEE
-%\ieeedoi{xx.xxxx/TVCG.201x.xxxxxxx}
+%% We encourage the use of mathptmx for consistent usage of times font
+%% throughout the proceedings. However, if you encounter conflicts
+%% with other math-related packages, you may want to disable it.
+
+%% In preprint mode you may define your own headline.
+%\preprinttext{To appear in IEEE Transactions on Visualization and Computer Graphics.}
 
 %% If you are submitting a paper to a conference for review with a double
 %% blind reviewing process, please replace the value ``0'' below with your
@@ -141,30 +142,31 @@
 \authorfooter{
 %% insert punctuation at end of each item
 \item
- Yarden Livnat is with the Scientific Computing and Imaging Institute at the University of Utah.
+ Yarden Livnat is with the Scientific Computing and Imaging Institute at the University of Utah. 
  E-mail: yarden@sci.utah.edu.
 \item
- Dan Maljovec is with the xxx.
- E-mail:
+ Dan Maljovec is with the xxx. 
+ E-mail: 
  \item  Attila Gyulassy is with xxx.
  E-mail:
  \item
- Valerio Pascucci is with the Scientific Computing and Imaging Institute at the University of Utah.
+ Valerio Pascucci is with the Scientific Computing and Imaging Institute at the University of Utah. 
  E-mail: pascucci@sci.utah.edu.
 }
-
 %other entries to be set up for journal
-\shortauthortitle{Livnat \MakeLowercase{\textit{et al.}}: Global Illumination for Fun and Profit}
+\shortauthortitle{Livnat \MakeLowercase{\textit{et al.}}: \TITLE}
 %\shortauthortitle{Firstauthor \MakeLowercase{\textit{et al.}}: Paper Title}
 
 %% Abstract section.
+%\abstract{
+%} % end of abstract
 \input{0-abstract}
 
 %% Keywords that describe your work. Will show as 'Index Terms' in journal
 %% please capitalize first letter and insert punctuation after last keyword
 \keywords{Multidimensional data, Topology, Data exploration.}
 
-%% ACM Computing Classification System (CCS).
+%% ACM Computing Classification System (CCS). 
 %% See <http://www.acm.org/class/1998/> for details.
 %% The ``\CCScat'' command takes four arguments.
 
@@ -174,21 +176,20 @@
 % \CCScat{K.7.m}{The Computing Profession}{Miscellaneous}{Ethics}
 %}
 
-%% A teaser figure can be included as follows
-\teaser{
-  \centering
-  \includegraphics[width=\linewidth]{combustion-details.pdf}
-  \caption{Regulus}
-  \label{fig:teaser}
-}
+%% Uncomment below to include a teaser figure.
+% \teaser{
+%  \centering
+%  \includegraphics[width=\linewidth]{teaser}
+%  \caption{}
+% 	\label{fig:teaser}
+% }
 
 %% Uncomment below to disable the manuscript note
 %\renewcommand{\manuscriptnotetxt}{}
 
 %% Copyright space is enabled by default as required by guidelines.
 %% It is disabled by the 'review' option or via the following command:
-% \nocopyrightspace
-
+%\nocopyrightspace
 
 \vgtcinsertpkg
 
@@ -196,19 +197,14 @@
 %%%%%%%%%%%%%%%%%%%%%% START OF THE PAPER %%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
+
 \begin{document}
 
 %% The ``\maketitle'' command must be the first command after the
 %% ``\begin{document}'' command. It prepares and prints the title block.
 
 %% the only exception to this rule is the \firstsection command
-\firstsection{Introduction}
-
-%\maketitle
-
-%% \section{Introduction} %for journal use above \firstsection{..} instead
-This template is for papers of VGTC-sponsored conferences such as IEEE VIS, IEEE VR, and ISMAR which are published as special issues of TVCG. The template does not contain the respective dates of the conference/journal issue, these will be entered by IEEE as part of the publication production process. Therefore, \textbf{please leave the copyright statement at the bottom-left of this first page untouched}.
-
 \input{1-intro}
 \input{2-bg}
 \input{3-regulus}
@@ -219,8 +215,7 @@ This template is for papers of VGTC-sponsored conferences such as IEEE VIS, IEEE
 
 %% if specified like this the section will be committed in review mode
 \acknowledgments{
-The authors wish to thank A, B, and C. This work was supported in part by
-a grant from XYZ (\# 12345-67890).}
+This work was supported in part by grants from XXX.}
 
 %\bibliographystyle{abbrv}
 \bibliographystyle{abbrv-doi}
@@ -230,3 +225,4 @@ a grant from XYZ (\# 12345-67890).}
 
 \bibliography{paper}
 \end{document}
+
