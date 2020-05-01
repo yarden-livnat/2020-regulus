@@ -1,0 +1,23 @@
+
+\vspace{-.1in}
+\section{Views}
+The \RT provides an overview of the hierarchical persistence space, but it does not provide any direct view of the data points, nor does it provide direct relations between the partitions. The variable size of the nodes also makes it harder to encode multiple values for each node. In the following, we provide a short descriptions of two additional views we employ. 
+
+\subsection{Details View}
+% The details view provides additional insights about a selected partition in terms of projections of its points, the inverse regression curves, and the coefficients of the linear regression curves.
+
+The details view (\autoref{fig:fitness}) depicts a set of scatterplots for a set of selected partitions where each row represents one partition and each column represents one input dimension. Each scatterplot depicts the points in the partition, where the y-axis represents the scalar function value and the x-axis represents the specific input dimension. The same y-axis range is used for all the plots across all the rows and columns. The x-axis range depends on the dimension (column) but is the same across all rows. The points are colored using the same blue-yellow-red color map and initially encode the value of the output function similar to the y-axis. Some datasets include multiple output values, only one of which is used to create the base Morse-Smale complex. The color can be used to encode any of the output variables. The partition id and the number of points in the partition (in parenthesis) are shown in the left most column. 
+
+Each plot also depicts a projection of the inverse regression curve for that partition. The semi-transparent area on both sides of the curve corresponds to one standard deviation for the corresponding input dimension. 
+% Together, the inverse regression curves and the standard deviation provide a concise summary of the local behaviour of the function. 
+% We also use the inverse curves as skeleton representations for selecting additional points to sample the underlying scalar function, but this work is beyond the scope of this paper. 
+
+We encode the coefficients of the linear regression models as horizontal bars under the plots. The bar in the left most column encode the intercept of the model. Green/red indicate a positive/negative coefficient respectively. The coefficients are normalized either with respect to current model or with respect to all the selected models. 
+
+\subsection{Graph View}
+The graph view depicts a 2D projection of selected partitions (\autoref{fig:graph}). Each partition is represented by an edge between its minimum and maximum critical points. There are many dimensional reduction methods, each with its own merits. One of a recurring complaints we receive from our collaborators is that the abstract nature of the projections often makes it very hard to comprehend and make use of. We designed the graph view to both simplify the projection and to allow the scientists to interactively explore the projections in ways that are meaningful to them. A point in multi-dimensional space is a linear combination of unit vectors each pointing along one dimension. In the Graph view we depict it as a linear combination of vectors in the 2d plane. The user can scale and rotate the vector to change its relative contributions as well as focus on specific dimensions by removing some of the vectors.
+
+The graph view can also project the points in the selected partitions. The points colors encode the same information as in the Details view. When a partition is highlighted, the points not in that partition are rendered as small gray points. A partition is highlighted when the user hovers over the partition edge in the graph view, hover over the partition in the \RT view, or hover over the partition row in the details view. Finally, the partition's edges can be rendered by projecting their inverse curves. Although these curves are not guaranteed to end up in the appropriate critical points, they often provide a good insight about the structure of the partition.
+
+\autoref{fig:graph} depicts three projections of the test dataset. The projection on the right demonstrates that manipulating the vectors can provide meaningful projections, in this case conveying a pseudo 3D perspective. The ability to individually manipulate each dimension proved valuable in exploring the contribution of individual and groups of dimensions. For example, by combining, subtracting and contrasting the contributions of several dimensions (same, opposite or perpendicular directions), as shown in \autoref{fig:combustion-projections}. 
+

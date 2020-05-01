@@ -1,76 +1,86 @@
 \firstsection{Introduction}
 \maketitle
 \label{sec:intro}
-\begin{itemize}[topsep=0cm, itemsep=0ex, parsep=0cm]
-    \item Computational models are used to study real-world phenomena, either by conducting computer simulations or a set of well-designed experiments. Give examples.
+
+Many phenomena in science and engineering can be described by how an output variable depends on input parameters. For example, understanding the correlation between temperature and chemical species and turbulence in a computationally model of a combustion reaction can lead to better fuel or engine designs. As another example, understanding how the measured strength of concrete varies with the ratios of its ingredients can lead to more error-tolerant mixtures. Computational models are used to study such real-world phenomena, either by conducting computer simulations or through a set of well-designed experiments. Analysis of the results can then be used to improve the models, find optimal solutions, uncover unknown relationships, and support decision-making.
+
+The set of relationships between inputs and output can be very specialized; for any input parameter, its relationship to the output variable may be conditioned on the variation in the other parameters. Topology provides a means of studying the shape of a function; for instance, identifying how local minima and maxima are related to each other both spatially and in terms of local importance. The Morse-Smale complex, in particular, decomposes the domain into monotonic regions that enable reasoning about local trends that contribute to the formation of a local maximum or minimum. In contrast to a user-defined query or hypercube sample, the topological partitions are intrinsic to the function and underlying manifold, and are well-suited for regression analysis. 
+
+Local perturbations, artifacts of meshing, or small features can derail analysis, as it is difficult to separate phenomena from noise. Persistent homology describes topological features in terms of their life-span of the element from its birth critical point to its death in a sweep of the range of the function. In many applications, features below a persistence threshold are discarded as noise, a process that involves guesstimating an appropriate value, sometimes with the help of a persistence curve. In many applications, however, features appear with varying persistence in the domain. In multi-dimensional data analysis, in particular, justifying a simplification threshold is difficult as, until now, there have not been effective visualization and exploration techniques to understand the specific relationships between features at different scales. 
+
+We introduce a novel visualization that is composed of a nested space-filling tree layout to visualize the topological hierarchy whose geometry encodes the size and persistence of topological features. We reinterpret persistence simplification hierarchies of the Morse-Smale complex as a merging tree of partitions, allowing an even finer granularity of feature selection than a single simplification operation and efficient layout. Color in the cells of the tree is used to encode one of many computed measures, such as fitness of a regression model to the corresponding topological feature, relationships between the models of parents and children, or any other computed attributes. Our new visualization is deployed in an open exploration environment implemented in Python and JupyterLab extensions. Linked views enable dynamic feature selection for flexible analysis. We evaluate the utility of the approach with use cases in combustion and nuclear energy, where salient features are visible at a glance, that previously depended on an exhaustive search through the simplification parameter.
+Specifically, our contributions are:
+\begin{itemize}[nosep]
+    \item A new interpretation of persistence simplification of a Morse-Smale complex as a merger tree of partitions,
+
+    \item A new visualization of topological hierarchies that encodes the size and life-span of every feature at once,
+
+    \item Measures on topological features that incorporate the ancestry of a partition to aid and guide users in selecting the topological scale for analysis, 
+
+    \item A user interface that enables adaptive simplification, and non-uniform and non-consistent selection of features across multiple scales, 
     
-    \item Analysis of the results can then be used to improve the models, find optimal solutions, uncover unknown relationships and support decision-making.
+    \item Design of an open exploration environment to facilitate exploratory analysis. 
+\end{itemize}
+
+
+% \begin{itemize}[topsep=0cm, itemsep=0ex, parsep=0cm]
+%     \item Computational models are used to study real-world phenomena, either by conducting computer simulations or a set of well-designed experiments. Give examples.
+    
+%     \item Analysis of the results can then be used to improve the models, find optimal solutions, uncover unknown relationships and support decision-making.
         
-    \item One important aim is to understand the shape of the output function. What are the local min and max values, where are they located and how are they associated with each other. Where are the min and max, how stable the function is at various location.
+%     \item One important aim is to understand the shape of the output function. What are the local min and max values, where are they located and how are they associated with each other. Where are the min and max, how stable the function is at various location.
     
-    \item Another important aspect is understanding the behaviour of the function, that is the relationship between the input parameters and the output.
+%     \item Another important aspect is understanding the behaviour of the function, that is the relationship between the input parameters and the output.
     
-    \item In particular, identifying regions of interest where the output function has unique characteristics or behavior with respect to the input parameters. Understanding the characteristics of the function in these ROI and around certain critical points.
+%     \item In particular, identifying regions of interest where the output function has unique characteristics or behavior with respect to the input parameters. Understanding the characteristics of the function in these ROI and around certain critical points.
     
-    \item These analysis can be done on the output function or on derived quantities.
+%     \item These analysis can be done on the output function or on derived quantities.
     
-    \item The data consist of a large collection of sample points in high-dimensional space. Dense uniform sampling can be very expensive. One approach to reduce the cost is to start with a coarse sampling density and then add samples in regions of interest. The challenge is then where to add such samples.\todo[inline]{If we talk about our sampling technique we probably need to show that it actually helps. That might be too much for this paper.}
+%     \item Topology
     
-    \item Topology
-    
-    Define $f: R^d \rightarrow R$, where y = $f(\overline{x})$. 
-    
-    \begin{itemize}
-        \item Morse-Smale and hierarchical simplification to deal with noise.
+%     \begin{itemize}
+%         \item Morse-Smale and hierarchical simplification to deal with noise.
         
-         \item Geometric Skeleton: inverse relationships indicating which combinations of inputs are responsible for which output.
+%          \item Geometric Skeleton: inverse relationships indicating which combinations of inputs are responsible for which output.
      
-        \item Topology data analysis (or is it Morse-Smale approaches?) tools often focus on on extrapolating $f$ at various refinement levels.
-    \end{itemize}
+%         \item Topology data analysis (or is it Morse-Smale approaches?) tools often focus on on extrapolating $f$ at various refinement levels.
+%     \end{itemize}
 
-    \item Simulation Ensembles
-    \begin{itemize}
-        \item Selection of ROI
-        \item selection of additional sampling points
-    \end{itemize}
-        
-\end{itemize}
+%     \item Simulation Ensembles
+%     \todo[inline]{maybe this shouldn't be in the paper}
 
-\item What we have focused on and have done
-In this paper we focus on scalar functions. We use MSC theory to define local approximation of the function rather than a complete global one. 
+% \end{itemize}
 
-\begin{itemize}
-    \item Help an analyst identify regions of interest (partitions) in the input space, where the $f$ exhibit consistent behaviour. 
+% \item In this paper we focus on scalar functions. We use MSC theory to define local approximation of the function rather than a complete global one. 
+
+% \begin{itemize}
+%     \item Help an analyst identify regions of interest (partitions) in the input space, where the $f$ exhibit consistent behaviour. 
     
-    \item Note that in general these that ROI need not be hyper cubes.
+%     \item Note that in general these that ROI need not be hyper cubes.
 
-    \item While the function maybe defined on a manifold embedded in $\R^d$, we do not aim to identify the manifold. 
+%     \item While the function is defined on a manifold embedded in $R^d$, we do not aim to identify the manifold. 
     
-    \item from Gerber:
-    \textit{"We are not aiming to interpolate or extrapolate f , but to analyze and visualize its structure using the existing samples to provide insight into the relationship between the input parameters and the output"}. 
+%     \item from Gerber:
+%     \textit{"We are not aiming to interpolate or extrapolate f , but to analyze and visualize its structure using the existing samples to provide insight into the relationship between the input parameters and the output"}. 
 
-    \item Explore the space of all potential simplifications to help the user select the appropriate refinement. Previous approaches rely on the user to select an appropriate refinement level based on crude measures, i.e. the focus is on \textit{What} to do given a persistence level. In contrast, we focus on the \textit{Why} question, i.e., why should the user select a particular refinement level, and should there be only global refinement level. 
+%     \item Explore the space of all potential simplifications to help the user select the appropriate refinement. Previous approaches rely on the user to select an appropriate refinement level based on crude measures, i.e. the focus is on \textit{What} to do given a persistence level. In contrast, we focus on the \textit{Why} question, i.e., why should the user select a particular refinement level, and should there be only global refinement level. 
     
-    \item we propose that other measures, in addition to persistence, can and should be used. These measure can describe attributes of a partition as well as relationships between partitions. Measures can depends on the data in the current partition,  multiple partitions or even on an (potentially temporal) ancestry relation.
-
-    \item Smart selection of additional sampling 
+%     \item we propose that other measures, in addition to persistence, can and should be used. These measure can describe attributes of a partition as well as relationships between partitions. Measures can depends on the data in the current partition,  multiple partitions or even on an (potentially temporal) ancestry relation.
     
-    \item An open exploration environment to facilitate the analysis exploration. It is designed to be used in a Notebook within a JupyterLab environment and as such our approach is designed for users that are knowledgeable with Python although it is simple to construct preconfigure setups for non programmers at a price of a closed system. The environment is open in the sense that it is meant to be integrated into a user's analysis workflow. Users can drive the UI from Python or by other components and can connect the UI to drive other tools, such as running additional simulations.s
+%     \item An open exploration environment to facilitate the analysis exploration. It is designed to be used in a Notebook within a JupyterLab environment and as such our approach is designed for users that are knowledgeable with Python although it is simple to construct preconfigure setups for non programmers at a price of a closed system. The environment is open in the sense that it is meant to be integrated into a user's analysis workflow. Users can drive the UI from Python or by other components and can connect the UI to drive other tools, such as running additional simulations.s
 
-\end{itemize}
+% \end{itemize}
 
-\item Contributions
-\begin{itemize}
-    \item Regulus Tree: A new interpretation of a persistence refinement of a Morse-Smale complex as a set of nested partitions. \textbf{This need to be rephrased.}
+% \item Contributions
+% \begin{itemize}
+%     \item Regulus Tree: A new interpretation of a persistence refinement of a Morse-Smale complex as a set of nested partitions. \textbf{This need to be rephrased.}
 
-    \item A visualization approach that provides a global view over all potential simplifications  
+%     \item A visualization approach that provides a global view over all potential simplifications  
 
-    \item Analysis of the nested partitions with respect to measures that are not necessarily geometric. 
+%     \item Analysis of the nested partitions with respect to measures that are not necessarily geometric. 
 
-    \item Non-uniform and non-consistent simplifications
+%     \item Non-uniform and non-consistent simplifications
     
-    \item Sampling: use geometric skeletons to select additional sampling points.
-    
-    \item An open exploration environment to facilitate the analysis exploration. 
-\end{itemize}
+%     \item An open exploration environment to facilitate the analysis exploration. 
+% \end{itemize}
 
